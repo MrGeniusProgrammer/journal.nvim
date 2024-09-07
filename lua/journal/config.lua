@@ -35,7 +35,7 @@ local function convert_strings_to_functions(config, include_keys)
 	for key, value in pairs(config) do
 		for include_key in include_keys do
 			if key ~= include_key then
-				return
+				goto continue
 			end
 		end
 
@@ -46,6 +46,8 @@ local function convert_strings_to_functions(config, include_keys)
 				config[key] = function() return value end
 			end
 		end
+
+		::continue::
 	end
 end
 
